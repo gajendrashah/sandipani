@@ -63,9 +63,79 @@
             width: 100%;
             height: auto;
         } */
+        .ad-section {
+        text-align: center;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+    }
+    .ad-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    .ad-card {
+        width: 100%;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .ad-image {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 6px;
+    }
+    .ad-heading {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+    .ad-description {
+        font-size: 14px;
+        color: #555;
+    }
+    .ad-btn {
+        display: inline-block;
+        padding: 8px 12px;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+    .ad-btn:hover {
+        background: #0056b3;
+    }
         
-        
+    
        </style>
+
+<div class="ad-section">
+    <!-- <h2 class="ad-title">Sponsored Ads</h2> -->
+    
+    {% if ads %}
+        <div class="ad-container">
+            {% for ad in ads %}
+                <div class="ad-card">
+                    <a href="{{ ad.link }}" target="_blank">
+                        <img src="{{ ad.image.url }}" alt="{{ ad.title }}" class="ad-image">
+                    </a>
+                    <div class="ad-details">
+                        <marquee><h3 class="ad-heading">{{ ad.title }}</h3></marquee>
+                        <!-- <p class="ad-description">{{ ad.description }}</p> -->
+                        <!-- <a href="{{ ad.link }}" class="ad-btn" target="_blank">Learn More</a> -->
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-ads">No ads available at the moment.</p>
+    {% endif %}
+</div>
        <!-- Carousel Start -->
         <div class="header-carousel owl-carousel">
             {% for carosel in carousel %}
@@ -85,10 +155,12 @@
                                     <h1 class="display-1 text-white mb-4">{{ carosel.title }}</h1>
                                     <p class="mb-5 fs-5">{{ carosel.quote }}</p>
                                     <div class="d-flex justify-content-center justify-content-md-end flex-shrink-0 mb-4">
-                                        <a class="btn btn-dark rounded-pill py-3 px-4 px-md-5 ms-2" href="#">Learn More</a>
+                                        <a class="btn btn-dark rounded-pill py-3 px-4 px-md-5 ms-2" href="{% url 'service' %}">Learn More</a>
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -106,7 +178,7 @@
                                         {{ carosel.quote }}
                                     </p>
                                     <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
-                                        <a class="btn btn-dark rounded-pill py-3 px-4 px-md-5 ms-2" href="#">Learn More</a>
+                                        <a class="btn btn-dark rounded-pill py-3 px-4 px-md-5 ms-2" href="{% url 'about' %}">Learn More</a>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +198,7 @@
         <!-- Carousel End -->
 
         <!-- Advertisement Popup -->
-        <div id="adPopup">
+        <!-- <div id="adPopup">
             <span id="closePopup" style="position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 20px;">&times;</span>
             <div class="slider" style="width: 100%; height: 100px;">
                 {% for ad in ads %}
@@ -139,7 +211,31 @@
                     </div>
                 {% endfor %}
             </div>
+        </div> -->
+        <div class="ad-section">
+            <h2 class="ad-title">Sponsored Ads</h2>
+            
+            {% if ads %}
+                <div class="ad-container">
+                    {% for ad in ads %}
+                        <div class="ad-card">
+                            <a href="{{ ad.link }}" target="_blank">
+                                <img src="{{ ad.image.url }}" alt="{{ ad.title }}" class="ad-image">
+                            </a>
+                            <div class="ad-details">
+                                <h3 class="ad-heading">{{ ad.title }}</h3>
+                                <p class="ad-description">{{ ad.description }}</p>
+                                <a href="{{ ad.link }}" class="ad-btn" target="_blank">Learn More</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="no-ads">No ads available at the moment.</p>
+            {% endif %}
         </div>
+
+
 
         <!-- Feature Start -->
         <div class="container-fluid feature bg-light py-5">
@@ -162,7 +258,7 @@
                             <h4 class="mb-4">{{ser.title}}</h4>
                             <p class="mb-4">{{ser.description|safe}}
                             </p>
-                            <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Learn More</a>
+                            <a class="btn btn-primary rounded-pill py-2 px-4" href="{% url 'service' %}">Learn More</a>
                         </div>
                     </div>
 
@@ -192,7 +288,7 @@
                             </p>
                             <p class="text-dark"><i class="fa fa-check text-primary me-3"></i>Comprehensive Support</p>
                             <p class="text-dark mb-4"><i class="fa fa-check text-primary me-3"></i>Test Preparation and Well-Equipped Learning Environment</p>
-                            <a class="btn btn-primary rounded-pill py-3 px-5" href="#">More Information</a>
+                            <a class="btn btn-primary rounded-pill py-3 px-5" href="{% url 'about' %}">More Information</a>
                         </div>
                         
                     </div>

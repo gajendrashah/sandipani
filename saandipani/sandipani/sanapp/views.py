@@ -20,11 +20,13 @@ def index(request):
     countries = Country.objects.all() 
     expert_team = ExpertTeam.objects.all()
     ads = Advertisement.objects.filter(is_active=True)  
+    services = Service.objects.all()
     return render(request, "sanapp/index.html", {"countries": countries,"carousel": carousel, "about": about, "services": services, "testimonials": testimonials, "top_destinations": top_destinations, "faqs": faqs, "ads": ads, "expert_team": expert_team})
 
 
 
 
+    
 
 def country(request, country_name):
     countries = Country.objects.all()

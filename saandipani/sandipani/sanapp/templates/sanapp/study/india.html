@@ -1,0 +1,155 @@
+{% extends 'sanapp/base.html' %}
+{% block content %}
+
+{% load static %}
+
+<!-- Import Animation Libraries -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script>new WOW().init();</script>
+
+<style>
+    /* General Styles */
+    .image-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .image-effect {
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .image-container:hover .image-effect {
+        transform: scale(1.1);
+    }
+
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .image-container:hover .image-overlay {
+        opacity: 1;
+    }
+
+    .section-bg {
+        background-color: #F9FAFC;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="container-fluid bg-primary py-5 mb-5 hero-header" style="background: linear-gradient(rgba(0, 56, 123, 0.6), rgba(0, 56, 123, 0.6)), url('{% static 'sanapp/img/india.jpg' %}') center/cover no-repeat;">
+    <div class="container text-center text-white py-5">
+        <h1 class="display-3 animated slideInDown">Study in India</h1>
+        <p class="fs-4 mb-4 animated slideInUp">Your Gateway to Affordable and Quality Education</p>
+        <a href="{% url 'about' %}" class="btn btn-light rounded-pill py-3 px-5">Learn More</a>
+    </div>
+</div>
+
+<!-- Overview Section -->
+<div class="container-xxl py-5" id="learn-more">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            {% for studyc in study_country %}
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-primary text-uppercase">About India</h6>
+                <h1 class="mb-4">Why Study in India?</h1>
+                <p>{{ studyc.description|safe }}</p>
+                <ul>
+                    <li>Affordable Education with High-Quality Teaching</li>
+                    <li>Diverse Cultural and Educational Environment</li>
+                    <li>High Academic Standards and Global Recognition</li>
+                    <li>Opportunities for Research and Innovation</li>
+                    <li>Easy Access to Multicultural Communities</li>
+                </ul>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="image-container">
+                    <img class="image-effect w-100" src="{{ studyc.image.url }}" alt="Study in India" style="border-radius: 15px;">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Education System -->
+<div class="container-xxl py-5">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="text-primary text-uppercase">Education System</h6>
+        <h1 class="mb-5">Indian Education System and Costs</h1>
+    </div>
+    <div class="row g-4 d-flex align-items-stretch">
+        {% for studyc in study_country %}
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="section-bg h-100 p-4">
+                <i class="fa fa-graduation-cap fa-3x text-primary mb-3"></i>
+                <h5>Academic Structure</h5>
+                <p>{{ studyc.education_system|safe }}</p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="section-bg h-100 p-4">
+                <i class="fa fa-dollar-sign fa-3x text-primary mb-3"></i>
+                <h5>Study Expenses</h5>
+                <p>{{ studyc.expenses|safe }}</p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="section-bg h-100 p-4">
+                <i class="fa fa-university fa-3x text-primary mb-3"></i>
+                <h5>Choose Your University</h5>
+                <p>{{ studyc.university|safe }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Work Opportunities -->
+<div class="container-xxl py-5">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="text-primary text-uppercase">Work Opportunities</h6>
+        <h1 class="mb-5">Career Prospects in India</h1>
+    </div>
+    <div class="row g-4">
+        {% for studyc in study_country %}
+        <div class="col-lg-6">
+            <div class="section-bg">
+                <h3>Work During Studies</h3>
+                <p>{{ studyc.work_permit|safe }}</p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="section-bg">
+                <h3>Post-Study Work Visa</h3>
+                <p>{{ studyc.work_visa|safe }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Call To Action -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="bg-light rounded p-5 wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="display-5 mb-4">Ready to Start Your Indian Education Journey?</h1>
+            <p>Take the first step towards your dream education. Contact us for expert guidance on studying in India.</p>
+            <a class="btn btn-primary py-3 px-5" href="{% url 'contact' %}">Contact Us Now</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

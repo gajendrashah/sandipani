@@ -107,9 +107,10 @@
     <div class="container py-5 text-center text-white">
         <h1 class="display-3 animated slideInDown" style="color: white;">Study in Australia</h1>
         <p class="fs-4 mb-4 animated slideInUp">Your Gateway to World-Class Education in the Australia</p>
-        <a href="#learn-more" class="btn btn-light rounded-pill py-3 px-5">Learn More</a>
+        <a href="{% url 'about' %}" class="btn btn-light rounded-pill py-3 px-5">Learn More</a>
     </div>
 </div>
+
 
 <!-- Overview Section -->
 <div class="container-xxl py-5" id="learn-more">
@@ -163,7 +164,7 @@
         </div>
         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
             <div class="service-item p-4 h-100">
-                <i class="fa fa-dollar-sign fa-3x text-primary mb-3"></i>
+                <i class="fa fa-university fa-3x text-primary mb-3"></i>
                 <h5>Choose University</h5>
                 <p>{{ studyc.university|safe }}</p>
             </div>
@@ -275,8 +276,8 @@
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="display-5 mb-4">Ready to Start Your Australia Education Journey?</h1>
-                    <p class="mb-4">Contact our expert counselors today for personalized guidance on admissions, visa process, and everything you need to know about studying in Australia.</p>
-                    <a class="btn btn-primary py-3 px-5" href="">Contact Us Now</a>
+                    <p class="mb-4">Embark on your education journey with curiosity and determination, for knowledge opens doors, transforms minds, and empowers you to shape a brighter future with every lesson learned and challenge overcome.</p>
+                    <a class="btn btn-primary py-3 px-5" href="{% url 'contact' %}">Contact Us Now</a>
                 </div>
             </div>
         </div>
